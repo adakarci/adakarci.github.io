@@ -5,18 +5,38 @@ date:   2015-06-23 17:32:40
 image: /assets/party.png
 categories: jekyll update
 ---
-<img src="{{ page.image }}">
-Gece uykusu kaçınca ne yapar insan?Tabiki Pygame ile party yapar. Pygame Python'un oyun kütüphanesi. Şuradan inceleyebilirsiniz. Pygame ile yapılmış oyunlardaki kodları okurken bazılarını kendi sahneme ekleyerek açıklamak istedim. Örneğin rotate ve ışıkların sürekli yanıp sönmesi için gereken kodu bir pygame uygulamasından aldım. Mantığını kavrayıp anlatmaya çalıştım. Kodun tamamı burada
+<img src="{{ page.image }}" /><p>
+Gece uykusu kaçınca ne yapar insan?Tabiki Pygame ile party yapar. Pygame Python'un oyun kütüphanesi. Şuradan inceleyebilirsiniz. Pygame ile yapılmış oyunlardaki kodları okurken bazılarını kendi sahneme ekleyerek açıklamak istedim. Örneğin rotate ve ışıkların sürekli yanıp sönmesi için gereken kodu bir pygame uygulamasından aldım. Mantığını kavrayıp anlatmaya çalıştım. Kodun tamamı [burada][jekyllgame]
+Öncelikle müzik notamız için Surface alanı oluşturuyoruz. İşlemlerimiz bu surface nesnesi üzerinde yapılacak.
+{% highlight ruby %}
+musicnota = pygame.Surface((850, 550)).convert_alpha()
+musicnota.fill((0, 0, 0, 0))
+{% endhighlight %}
+Daha sonra istediğimiz anda ortaya çıkması için müzik notasını çizen bir fonksiyon oluştururuz.
 
 {% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+def drawmusic():
+	pygame.draw.ellipse(musicnota, (255, 231, 186), (785, 405, 20, 15))
+	pygame.draw.ellipse(musicnota, (255, 231, 186), (760, 410, 20, 15))
+	pygame.draw.line(musicnota, (255, 231, 186), (778, 390), (778, 415), 2)
+	pygame.draw.line(musicnota, (255, 231, 186), (804, 380), (804, 410), 2)
+	pygame.draw.line(musicnota, (255, 231, 186), (778, 390), (805, 380), 2)
+
 {% endhighlight %}
-
-
+Müzik notasının hareket etmesi için blit kodunu kullanırken y koordinatının hareketli olması için değişken kullanırız.
 {% highlight ruby %}
  screen.blit(musicnota, (0, y))
 {% endhighlight %}
+
+Müzik notamızın belirtilen yüksekliğe çıkarak tekrar başa dönmesi için yazılan kod:
+
+{% highlight ruby %}
+if y == -300:
+	y = 10
+	y -= 1
+{% endhighlight %}
+
+Şimdi yanıp sönen ışıkları yapalım:
+
+
+[jekyllgame]: https://github.com/adakarci/some-pygame
