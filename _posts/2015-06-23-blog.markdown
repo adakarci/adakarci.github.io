@@ -4,10 +4,11 @@ title:  "Blogun son durağı"
 date:   2015-06-23 17:32:40
 categories: jekyll update
 ---
-Bilgisayarda program yazmayı kendi kendime öğreniyorum. Ancak öğrendiklerini bir şekilde yazmak, aktarmak, kayıt altına almak istiyor insan. Önce Django ile bir blog yazıp `webfaction` hosting şirketini kullanarak yayınladım ancak daha sonra  github-pages ve jekyll kullanarak çok daha elegan ve rahat bir ortam yaratacağımı farkettim. Jekyll önce locale kuruyorsunuz, gereken düzenlemeleri yaparak github'da kullanıcı adınızla 'github.io' uzantılı bir repo oluşturup, dosyaları push ediyorsunuz. Database derdi yok, css derdi yok, sadece yazmaya ve konuya odaklanıyorsunuz.
+Bilgisayarda program yazmayı kendi kendime öğreniyorum. Ancak öğrendiklerini bir şekilde aktarmak, kayıt altına almak istiyor insan. Önce Django ile bir [blog] [jekyllblo] yazıp `webfaction` hosting şirketini kullanarak yayınladım ancak daha sonra  github-pages ve jekyll kullanarak çok daha rahat bir ortam yaratacağımı farkettim. Jekyll önce localde kuruyorsunuz, gereken düzenlemeleri yaparak github'da kullanıcı adınızla 'github.io' uzantılı bir repository oluşturup, dosyaları push ediyorsunuz. Database derdi yok, css derdi yok, sadece yazmaya ve konuya odaklanıyorsunuz.
 
 
 Jekyll ile ilgili bilgilere bu siteden[Jekyll docs][jekyll], github-pages ile ilgili bilgilere de bu [Github Pages][jekyll-gh] siteden ulaşabilirsiniz. . 
 
 [jekyll]:      http://jekyllrb.com
 [jekyll-gh]:   https://pages.github.com/
+[jekyllblo]:   https://github.com/adakarci/myblog

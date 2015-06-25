@@ -8,3 +8,15 @@ categories: jekyll update
 <img src="{{ page.image }}">
 Gece uykusu kaçınca ne yapar insan?Tabiki Pygame ile party yapar. Pygame Python'un oyun kütüphanesi. Şuradan inceleyebilirsiniz. Pygame ile yapılmış oyunlardaki kodları okurken bazılarını kendi sahneme ekleyerek açıklamak istedim. Örneğin rotate ve ışıkların sürekli yanıp sönmesi için gereken kodu bir pygame uygulamasından aldım. Mantığını kavrayıp anlatmaya çalıştım. Kodun tamamı burada
 
+{% highlight ruby %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
+
+
+{% highlight ruby %}
+ screen.blit(musicnota, (0, y))
+{% endhighlight %}
