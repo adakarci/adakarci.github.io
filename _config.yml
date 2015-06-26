@@ -2,7 +2,7 @@
 title: Ada Karcı
 email: karci.ada@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  I'm Ada.. I'm writing about Computer Software(learning) and aliens. The point is building a time machine. By the way, alien is just a joke, I have definitely no idea about aliens.
+  I'm Ada.. I'm writing about Computer Software(learning) and aliens. The point is building a time machine. Alien is just a joke, I have definitely no idea about aliens.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 

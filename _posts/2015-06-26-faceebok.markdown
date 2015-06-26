@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "Facebook Postlarının mail olarak gelmesi"
+date:   2015-06-23 17:32:40
+image: /assets/party.png
+categories: jekyll update
+---
+
+Bir arkadaşım sevgilisinin facebook adresine sürekli girip baktığını, bunun artık kendisinde bir takıntı haline dönüştüğünden bahsetti. Ben de sevgilisi paylaşımda bulunduğu zaman 
+ona mail gelecek bir uygulama yazabileceğimi söyledim. Bu şekilde sürekli profile girip bakmak zorunda kalmayacaktı. Ancak Facebook'un çıkardığı Graph Api bazı kısıtlamalar getirmiş. ( daha önceki nasıldı bilmiyorum, sadece yorumlardan önceleri daha fazla dataya ulaşılabildiğini anladım) Yani ben şuan direk gidip X şahsının postlarına ulaşamıyorum. Uygulamama izin vermesi gerekiyor ama ben izin almak istemedim. Sonuçta onun postlarını profiline gidip görebiliyorsam iş akışı bu kadar kompleks olmamalı. Burda arkadaşım şöyle bir mantık öne sürdü. Direk olarak bir eve ulaşamayabilirsin belki ama mahalleye erişimin olduğu için o eve de ulaşmış sayılırsın dedi. Ben kendi timeline'ma ulaşabiliyorum, orada akan bütün datalar elimde. Eğer o kişiye ait postları ayıklayabilirsem sorun çözülmüş olacak. Bu da tereyağından kıl çeker gibi basit. Tabi ki timeline'mı 3 dakikada bir taraması ve kişiye ait postları bulması gerekiyor. Bunun için de sevgili google'n appengine uygulamasıyla birlikte cron jobs kullandım. Sorunsuz bir şekilde çalışıyor.
+[Kodlar burada incelemek isterseniz.] [jekyllface]  
+
+[jekyllface]: https://github.com/adakarci/fproject

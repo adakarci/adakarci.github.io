@@ -1,0 +1,44 @@
+---
+layout: post
+title:  "Excel ve Python"
+date:   2015-06-22 17:32:40
+categories: jekyll update
+---
+
+Excel dosyaları üzerinde ciddi bir çalışma yapmadım ancak sene içinde excel ile çalışma yapan kişilerle çokça karşılaştım. O zamanlarda yapmak istediklerini belki kodla daha kısa yoldan yaparım gibi düşüncelere kapılmama rağmen yoğunluktan dolayı üzerine eğilememiştim. Hangi kütüphane hatta kütüphaneler varmış ona bakıp neler yapılabileceği hakkında fikir sahibi olmak istedim. 
+
+[Burada][excel] güzel örneklerle excel kütüphaneleri anlatılmış. İncelerseniz kullanımını hemen öğrenebilirsiniz. Şuan aklıma herhangi bir örnek gelmedi ancak excel ile ilgili herhangi bir konu önüme gelirse kolay bir şekilde çözülebilecğine inanıyorum. Ben de yine bir web adresindeki tabloyu excel hücrelerine yerleştirdim. Sonuç çok tatmin edici olmadı ama şimdilik bu şekilde bırakacağım.
+
+Kodlar burada:
+
+{% highlight ruby %}
+from bs4 import BeautifulSoup
+import urllib
+import sys
+from xlwt import Workbook
+
+
+def processor():
+	if len(sys.argv)!=2:
+		print "Usage: python ex.py url"
+	else:
+		book = Workbook()
+		url = sys.argv[1]
+		openurl = urllib.urlopen(url)
+		openurlread = openurl.read()
+		soup = BeautifulSoup(openurlread)
+		findtable = soup.findAll("table")
+		for numb, table in enumerate(findtable):
+			sheet = book.add_sheet('sheet%s' %numb)
+			rows = table.findChildren(['th', 'tr'])
+			for b, row in enumerate(rows):
+				cells = row.findChildren('td')
+				for a, cell in enumerate(cells):
+					value = cell.text
+					sheet.write(b, a, value)
+			
+		book.save("urltable.xls")
+processor()
+{% endhighlight %}
+
+[excel]:http://www.simplistix.co.uk/presentations/python-excel.pdf

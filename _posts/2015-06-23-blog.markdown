@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Blogun son durağı"
-date:   2015-06-23 17:32:40
+date:   2015-06-22 17:32:40
 categories: jekyll update
 ---
 Bilgisayarda program yazmayı kendi kendime öğreniyorum. Ancak öğrendiklerini bir şekilde aktarmak, kayıt altına almak istiyor insan. Önce Django ile bir [blog] [jekyllblo] yazıp `webfaction` hosting şirketini kullanarak yayınladım ancak daha sonra  github-pages ve jekyll kullanarak çok daha rahat bir ortam yaratacağımı farkettim. Jekyll önce localde kuruyorsunuz, gereken düzenlemeleri yaparak github'da kullanıcı adınızla 'github.io' uzantılı bir repository oluşturup, dosyaları push ediyorsunuz. Database derdi yok, css derdi yok, sadece yazmaya ve konuya odaklanıyorsunuz.
