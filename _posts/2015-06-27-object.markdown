@@ -176,9 +176,10 @@ class Ball:
 		self.life -= 1
 		if self.life <0:
 			ball.remove(self)
+{% endhighlight %}
 
 Topların hareket hızlarını ayarlamak için clock kullanıyoruz. İlk açılışta bir tane kendiliğinden top oluşması için Ball sınıfını kullanıyoruz.
-{% endhighlight %}
+
 
 {% highlight ruby %}
 clock = pygame.time.Clock()
