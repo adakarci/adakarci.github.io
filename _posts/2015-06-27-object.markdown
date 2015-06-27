@@ -1,0 +1,187 @@
+---
+layout: post
+title:  "Object Oriented Programming and Example with Pygame"
+date:   2015-06-27 17:32:40
+image: /assets/party.png
+categories: jekyll update
+---
+
+İşin teknik tarafı bir yana program yazarken sınıflarla çalışmak gerçekten eğlenceli. İşe yarayan bir yapı oluşturup sonra bunu istediğin yere yapıştırıp kullanıyorsun. Peki nedir sınıf? Tutoriallardan, resmi sitelerinden edindiğim bilgileri kendi anlayacağım şekilde çevirip yazmak istedim. Başlayalım.
+
+Python'da her şeyin bir nesne olduğunu artık biliyoruz. Her şey dediğimiz nedir?
+
+{% highlight ruby %}
+print type(1)
+print type("")
+print type([])
+print type({})
+print type(())
+print type(object)
+print type(function)
+print type(sys)
+
+{% endhighlight %}
+Bu satırların çıktısı bize şunları verecektir.
+{% highlight ruby %}
+<type 'int'>
+<type 'str'>
+<type 'list'>
+<type 'dict'>
+<type 'tuple'>
+<type 'type'>
+<type 'function'>
+<type 'module'>
+{% endhighlight %}
+Burada gördüklerimizin hepsi birer nesnedir ve type methodu nesnenin tipini döndürmektedir.
+
+
+Örneğin 'def' fonksiyon tanımı yapmak için kullanılırken 'class' sınıfı tanımlamak için kullanılıyor. Sınıf ifade, değer ve fonksiyonların bir gruplaması olarak düşünülebilir, ancak mantıklı ve ilişkili bir gruplaması.
+Bir örnek yapalım:
+
+{% highlight ruby %}
+class Person(object):
+	def __init__(self, name):
+		self.name = name
+
+	def say_my_name(self):
+		print self.name
+
+{% endhighlight %}
+Bu bir sınıf örneğidir ancak sadece yapıyı oluşturduk, henüz bir insan yaratmadık. Sıkça duyacağımız object oriented tanımlarından instance(örnek), attribute(karakter), method üzerinde duralım. Burada say_my_name fonksiyonu method olmakla birlikte sınıf içindeki tüm bilgilere erişebiliyor. 
+
+{% highlight ruby %}
+Ada = Person("Ada")
+{% endhighlight %}
+
+İşte şimdi Ada isminde bir kişi oluşturduk. Yani Ada adında bir instance oluşturduk. Sizin de anlayacağınız gibi istediğimiz kadar instance oluşturabiliriz. Burada self.name bölümü ise attribute yani nitelik oluyor. Bu da class attribute ve instance attribute olarak ikiye ayrılıyor. 
+
+{% highlight ruby %}
+class Person(object):
+	cars = []
+
+	def __init__(self, name):
+		self.house = []
+
+
+{% endhighlight %}
+
+Burada cars class attribute, house ise instance attribute oluyor. Örneğin şu şekilde komutlar verelim.
+
+{% highlight ruby %}
+class Person(object):
+	cars = []
+
+	def __init__(self):
+		self.house = []
+
+a1 = Person()
+a2 = Person()
+a1.cars.append("audi")
+print a1.cars
+print a2.cars
+a1.house.append("house1")
+print a1.house
+print a2.house
+{% endhighlight %}
+
+Çıktısı:
+{% highlight ruby %}
+['audi']
+['audi']
+['house1']
+[]
+{% endhighlight %}
+
+Gördüğünüz gibi instance attribute sadece kendi örneğinde yapılan değişikliklerden sorumlu olurken class niteliğindeki tüm değişme diğer instanceları da etkiliyor. Bütün oluşturulan instancelarda değişmeyen aynı özellik varsa bu class attribute olarak tanımlanmalıdır. Örneğin 2 kulak, 2 göz gibi.
+
+Şimdi gelelim Inheritance yani kalıtım, miras alma konusuna:
+
+Object Oriented konusunun temelinde tekrar tekrar aynı şeyleri oluşturmadan bir kez oluşturduğumuz bir sınıfı farklı yerlere yerleştirip kullanabiliyorduk. Daha da genişletirsek bir kez oluşturduğumuz bir sınıfı diğer sınıfın içinde kullanabiliyoruz. Nitelik, method ekleyip, çıkarabiliyoruz. Bir nevi miras alıyoruz. 
+{% highlight ruby %}
+
+class Colleksiyoner(object):
+
+	def __init__(self, thing, numb):
+		self.thing = thing
+		self.numb = numb
+		
+
+	def buy_thing(self, numb):
+		self.numb += numb
+
+class MusicColleksiyoner(Colleksiyoner):
+	def __init__(self, kind):
+		Colleksiyoner.__init__(self, "music", 3)
+		self.kind = kind
+
+	def display_kind(self):
+		print self.kind
+
+albert = MusicColleksiyoner("pop")
+albert.display_kind()
+print albert.thing
+albert.buy_thing(5)
+print albert.numb
+
+{% endhighlight %}
+Bu programın çıktısı :
+
+
+{% highlight ruby %}
+pop
+music
+8
+{% endhighlight %}
+
+Şimdi pygame kullanarak kapsamlı bir örnek yapalım. Bunu bir tutorialda izledim, çok hoşuma gitti. Hafif stres attırmıyor da değil.
+Kodları anlatarak yazayım ki arada sınıf yapısına da değinmiş oluruz.
+
+Gerekli kütüphaneleri, modülleri import yapıp pygame sahnesini yaratıyoruz.
+
+{% highlight ruby %}
+import pygame, sys, random
+from pygame.locals import *
+w = 800
+h = 480
+z = 0
+screen = pygame.display.set_mode((w, h))
+pygame.display.update()
+{% endhighlight %}
+
+Ball isminde bir sınıf tanımlıyoruz ve bu sınıfı programın içinde istediğimiz yerde kullanabiliyoruz.
+
+{% highlight ruby %}
+class Ball:
+	def __init__(self, radius, y, x, color, size, maxforce, force, life):
+		self.y = y
+		self.x = x
+		self.size = size
+		self.maxforce = maxforce
+		self.force = force
+		self.radius = radius
+		self.color = color
+		self.life = life
+		pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
+
+	def fall(self):
+		if self.y < h - self.radius:
+			self.y += self.force
+			if self.force <self.maxforce:
+				self.force +=1
+		elif self.y > h-self.radius or self.x == h-self.radius:
+			self.y = h-self.radius-1
+			self.force = self.force*-1
+			self.maxforce = self.maxforce/2
+		pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
+		self.life -= 1
+		if self.life <0:
+			ball.remove(self)
+
+Topların hareket hızlarını ayarlamak için clock kullanıyoruz. İlk açılışta bir tane kendiliğinden top oluşması için Ball sınıfını kullanıyoruz.
+{% endhighlight %}
+
+{% highlight ruby %}
+clock = pygame.time.Clock()
+ball = []
+ball.append(Ball(25, 250, 250, (50, 50, 50),"L", 25, 1, 100))
+{% endhighlight %}
