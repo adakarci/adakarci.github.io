@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Object Oriented Programming and Example with Pygame</title>
+  <meta name="description" content="İşin teknik tarafı bir yana program yazarken sınıflarla çalışmak gerçekten eğlenceli. İşe yarayan bir yapı oluşturup sonra bunu istediğin yere yapıştırıp kul...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yourdomain.com/jekyll/update/2015/06/27/object.html">
+  <link rel="alternate" type="application/rss+xml" title="Ada Karcı" href="http://yourdomain.com/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Ada Karcı</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Object Oriented Programming and Example with Pygame</h1>
+    <p class="post-meta">Jun 27, 2015</p>
+  </header>
+
+  <article class="post-content">
+    <p>İşin teknik tarafı bir yana program yazarken sınıflarla çalışmak gerçekten eğlenceli. İşe yarayan bir yapı oluşturup sonra bunu istediğin yere yapıştırıp kullanıyorsun. Peki nedir sınıf? Tutoriallardan, resmi sitelerinden edindiğim bilgileri kendi anlayacağım şekilde çevirip yazmak istedim. Başlayalım.</p>
+
+<p>Python&#39;da her şeyin bir nesne olduğunu artık biliyoruz. Her şey dediğimiz nedir?</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">print</span> <span class="n">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">type</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">type</span><span class="p">(</span><span class="o">[]</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">type</span><span class="p">({})</span>
+<span class="nb">print</span> <span class="n">type</span><span class="p">(())</span>
+<span class="nb">print</span> <span class="n">type</span><span class="p">(</span><span class="n">object</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">type</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">type</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span></code></pre></div>
+
+<p>Bu satırların çıktısı bize şunları verecektir.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">type</span> <span class="s1">&#39;int&#39;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">type</span> <span class="s1">&#39;str&#39;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">type</span> <span class="s1">&#39;list&#39;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">type</span> <span class="s1">&#39;dict&#39;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">type</span> <span class="s1">&#39;tuple&#39;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">type</span> <span class="s1">&#39;function&#39;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">type</span> <span class="s1">&#39;module&#39;</span><span class="o">&gt;</span></code></pre></div>
+
+<p>Burada gördüklerimizin hepsi birer nesnedir ve type methodu nesnenin tipini döndürmektedir.</p>
+
+<p>Örneğin &#39;def&#39; fonksiyon tanımı yapmak için kullanılırken &#39;class&#39; sınıfı tanımlamak için kullanılıyor. Sınıf ifade, değer ve fonksiyonların bir gruplaması olarak düşünülebilir, ancak mantıklı ve ilişkili bir gruplaması.
+Bir örnek yapalım:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nb">name</span><span class="p">):</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">name</span>
+
+    <span class="k">def</span> <span class="nf">say_my_name</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="nb">self</span><span class="o">.</span><span class="n">name</span></code></pre></div>
+
+<p>Bu bir sınıf örneğidir ancak sadece yapıyı oluşturduk, henüz bir insan yaratmadık. Sıkça duyacağımız object oriented tanımlarından instance(örnek), attribute(karakter), method üzerinde duralım. Burada say<em>my</em>name fonksiyonu method olmakla birlikte sınıf içindeki tüm bilgilere erişebiliyor. </p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Ada</span> <span class="o">=</span> <span class="no">Person</span><span class="p">(</span><span class="s2">&quot;Ada&quot;</span><span class="p">)</span></code></pre></div>
+
+<p>İşte şimdi Ada isminde bir kişi oluşturduk. Yani Ada adında bir instance oluşturduk. Sizin de anlayacağınız gibi istediğimiz kadar instance oluşturabiliriz. Burada self.name bölümü ise attribute yani nitelik oluyor. Bu da class attribute ve instance attribute olarak ikiye ayrılıyor. </p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">object</span><span class="p">):</span>
+    <span class="n">cars</span> <span class="o">=</span> <span class="o">[]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nb">name</span><span class="p">):</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">house</span> <span class="o">=</span> <span class="o">[]</span></code></pre></div>
+
+<p>Burada cars class attribute, house ise instance attribute oluyor. Örneğin şu şekilde komutlar verelim.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">object</span><span class="p">):</span>
+    <span class="n">cars</span> <span class="o">=</span> <span class="o">[]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">house</span> <span class="o">=</span> <span class="o">[]</span>
+
+<span class="n">a1</span> <span class="o">=</span> <span class="no">Person</span><span class="p">()</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="no">Person</span><span class="p">()</span>
+<span class="n">a1</span><span class="o">.</span><span class="n">cars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;audi&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">a1</span><span class="o">.</span><span class="n">cars</span>
+<span class="nb">print</span> <span class="n">a2</span><span class="o">.</span><span class="n">cars</span>
+<span class="n">a1</span><span class="o">.</span><span class="n">house</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;house1&quot;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">a1</span><span class="o">.</span><span class="n">house</span>
+<span class="nb">print</span> <span class="n">a2</span><span class="o">.</span><span class="n">house</span></code></pre></div>
+
+<p>Çıktısı:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">[</span><span class="s1">&#39;audi&#39;</span><span class="o">]</span>
+<span class="o">[</span><span class="s1">&#39;audi&#39;</span><span class="o">]</span>
+<span class="o">[</span><span class="s1">&#39;house1&#39;</span><span class="o">]</span>
+<span class="o">[]</span></code></pre></div>
+
+<p>Gördüğünüz gibi instance attribute sadece kendi örneğinde yapılan değişikliklerden sorumlu olurken class niteliğindeki tüm değişme diğer instanceları da etkiliyor. Bütün oluşturulan instancelarda değişmeyen aynı özellik varsa bu class attribute olarak tanımlanmalıdır. Örneğin 2 kulak, 2 göz gibi.</p>
+
+<p>Şimdi gelelim Inheritance yani kalıtım, miras alma konusuna:</p>
+
+<p>Object Oriented konusunun temelinde tekrar tekrar aynı şeyleri oluşturmadan bir kez oluşturduğumuz bir sınıfı farklı yerlere yerleştirip kullanabiliyorduk. Daha da genişletirsek bir kez oluşturduğumuz bir sınıfı diğer sınıfın içinde kullanabiliyoruz. Nitelik, method ekleyip, çıkarabiliyoruz. Bir nevi miras alıyoruz. </p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Colleksiyoner</span><span class="p">(</span><span class="n">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="n">thing</span><span class="p">,</span> <span class="n">numb</span><span class="p">):</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">thing</span> <span class="o">=</span> <span class="n">thing</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">numb</span> <span class="o">=</span> <span class="n">numb</span>
+        
+
+    <span class="k">def</span> <span class="nf">buy_thing</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="n">numb</span><span class="p">):</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">numb</span> <span class="o">+=</span> <span class="n">numb</span>
+
+<span class="k">class</span> <span class="nc">MusicColleksiyoner</span><span class="p">(</span><span class="no">Colleksiyoner</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">):</span>
+        <span class="no">Colleksiyoner</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="s2">&quot;music&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">=</span> <span class="n">kind</span>
+
+    <span class="k">def</span> <span class="nf">display_kind</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="nb">self</span><span class="o">.</span><span class="n">kind</span>
+
+<span class="n">albert</span> <span class="o">=</span> <span class="no">MusicColleksiyoner</span><span class="p">(</span><span class="s2">&quot;pop&quot;</span><span class="p">)</span>
+<span class="n">albert</span><span class="o">.</span><span class="n">display_kind</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">albert</span><span class="o">.</span><span class="n">thing</span>
+<span class="n">albert</span><span class="o">.</span><span class="n">buy_thing</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">albert</span><span class="o">.</span><span class="n">numb</span></code></pre></div>
+
+<p>Bu programın çıktısı :</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">pop</span>
+<span class="n">music</span>
+<span class="mi">8</span></code></pre></div>
+
+<p>Şimdi pygame kullanarak kapsamlı bir örnek yapalım. Bunu bir tutorialda izledim, çok hoşuma gitti. Hafif stres attırmıyor da değil.
+Kodları anlatarak yazayım ki arada sınıf yapısına da değinmiş oluruz.</p>
+
+<p>Gerekli kütüphaneleri, modülleri import yapıp pygame sahnesini yaratıyoruz.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="n">pygame</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">random</span>
+<span class="n">from</span> <span class="n">pygame</span><span class="o">.</span><span class="n">locals</span> <span class="n">import</span> <span class="o">*</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mi">800</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">480</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
+
+<p>Ball isminde bir sınıf tanımlıyoruz ve bu sınıfı programın içinde istediğimiz yerde kullanabiliyoruz.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Ball</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">maxforce</span><span class="p">,</span> <span class="n">force</span><span class="p">,</span> <span class="n">life</span><span class="p">):</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">maxforce</span> <span class="o">=</span> <span class="n">maxforce</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">force</span> <span class="o">=</span> <span class="n">force</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">life</span> <span class="o">=</span> <span class="n">life</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="nb">self</span><span class="o">.</span><span class="n">radius</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fall</span><span class="p">(</span><span class="nb">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">self</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">h</span> <span class="o">-</span> <span class="nb">self</span><span class="o">.</span><span class="n">radius</span><span class="p">:</span>
+            <span class="nb">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="nb">self</span><span class="o">.</span><span class="n">force</span>
+            <span class="k">if</span> <span class="nb">self</span><span class="o">.</span><span class="n">force</span> <span class="o">&lt;</span><span class="nb">self</span><span class="o">.</span><span class="n">maxforce</span><span class="p">:</span>
+                <span class="nb">self</span><span class="o">.</span><span class="n">force</span> <span class="o">+=</span><span class="mi">1</span>
+        <span class="n">elif</span> <span class="nb">self</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">h</span><span class="o">-</span><span class="nb">self</span><span class="o">.</span><span class="n">radius</span> <span class="ow">or</span> <span class="nb">self</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">h</span><span class="o">-</span><span class="nb">self</span><span class="o">.</span><span class="n">radius</span><span class="p">:</span>
+            <span class="nb">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">h</span><span class="o">-</span><span class="nb">self</span><span class="o">.</span><span class="n">radius</span><span class="o">-</span><span class="mi">1</span>
+            <span class="nb">self</span><span class="o">.</span><span class="n">force</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">force</span><span class="o">*-</span><span class="mi">1</span>
+            <span class="nb">self</span><span class="o">.</span><span class="n">maxforce</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">maxforce</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="nb">self</span><span class="o">.</span><span class="n">radius</span><span class="p">)</span>
+        <span class="nb">self</span><span class="o">.</span><span class="n">life</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">self</span><span class="o">.</span><span class="n">life</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">ball</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span></code></pre></div>
+
+<p>Burada gördüğünüz gibi instance attribute tanımlamaları var. (self,y, self.x, self.size gibi) Daha sonra da fall isimli, Ball sınıfına ait bir fonksiyon
+oluşturulmuş. Program içinde  sınıfla birlikte çağrıldığı zaman bu fonksiyon da kullanılır hale gelecek.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span><span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="k">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+        <span class="n">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="ss">MOUSEBUTTONDOWN</span><span class="p">:</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="ss">MOUSEBUTTONUP</span><span class="p">:</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">ball</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="no">Ball</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">)</span> <span class="p">),</span><span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span></code></pre></div>
+
+<p>Kodun bu bölümünde fareyle tıkladığınızda Ball sınıfı kullanılarak ekranda top oluşmasını, fareden parmağınızı kaldırdığınız zaman da top oluşumunun durmasını sağlıyorsunuz.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">ball</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="no">Ball</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">255</span><span class="p">)</span> <span class="p">),</span><span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span></code></pre></div>
+
+<p>Bu satırla ball listesine Ball sınıfı kullanılarak sürekli top ekliyor.</p>
+
+<p>Topların hareket hızlarını ayarlamak için clock kullanıyoruz. İlk açılışta bir tane kendiliğinden top oluşması için Ball sınıfını kullanıyoruz.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span>
+<span class="n">ball</span> <span class="o">=</span> <span class="o">[]</span>
+<span class="n">ball</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="no">Ball</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span><span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span></code></pre></div>
+
+<p>Kodun son bölümünde ise sınıf içinde oluşturulan fall fonksiyonu kullanılıyor.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="ss">ball</span><span class="p">:</span>
+        <span class="n">i</span><span class="o">.</span><span class="n">fall</span><span class="p">()</span>
+
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></code></pre></div>
+
+  </article>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'httpadakarcigithubio'; // required: replace example with your forum shortname
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ada Karcı</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li></li>
+          <li><a href="mailto:karci.ada@gmail.com">karci.ada@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/adakarci">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">adakarci</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">I'm Ada.. I'm writing about Computer Software(learning) and aliens. The point is building a time machine. Alien is just a joke, I have definitely no idea about aliens.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
