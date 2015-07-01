@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Algoritmalar (Kitap Özet vs)</title>
+  <meta name="description" content="Kitap İncele">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yourdomain.com/jekyll/update/2015/06/29/algoritmalar.html">
+  <link rel="alternate" type="application/rss+xml" title="Ada Karcı" href="http://yourdomain.com/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Ada Karcı</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Algoritmalar (Kitap Özet vs)</h1>
+    <p class="post-meta">Jun 29, 2015</p>
+  </header>
+
+  <article class="post-content">
+    <p><img src="/assets/book.jpg" /><p>
+<a href="http://www.idefix.com/kitap/algoritmalar-vasif-vagifoglu-nabiyev/tanim.asp?sid=AYU2EB7PR6D92OP4GRBN">Kitap İncele</a></p>
+
+<p>Programlama öğrenmek isteyenlerin okuması ve hazmetmesi gereken bir kitaptan bahsedelim. Hatta başucu kitabıdır kendisi. İçinde teorik anlamda uygulamaya dökebileceğiniz, işin biraz daha metamatiğine
+inebileceğiniz bilgiler mevcut. Ben kitaptan öğrendiklerimi ara ara yazmak istiyorum. </p>
+
+<p><code>Sıralama Algoritmaları</code> ile başlayalım:</p>
+
+<p>Algoritma kurarken sıralama fonksiyonunun kullanılmasıyla bu işlem üzerinde kafa yormuşlar ve hesaplama karmaşıklıklarını hesaba katarak en verimli yolu bulmaya çalışmışlar. Şimdi bu yollar üzerinden bir de biz gidelim.</p>
+
+<p>1 - Yerleştirmeli Sıralama ( Insertion Sort)</p>
+
+<p>Örneğin elimizde 10 sayıdan oluşan bir dizi olsun ve biz bu sayıları sıralayalım. Nasıl bir yöntem izlerdiniz? Beynimizdeki düşüncenin algoritmasını kurarak bunu bir dil sayesinde programlamamız gerekiyor.
+sayilar = (3, 4, 1, 8, 2, 0, 9, 44, 22, 5, )</p>
+
+<p>Şimdi Insert-Sort tekniğini uygulayarak bu sayıları sıralayalım.
+Ben python kullanarak çözeceğim.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">numbers</span> <span class="o">=</span> <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">while</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]&lt;</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">:</span>
+            <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">,</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="nb">print</span> <span class="n">numbers</span></code></pre></div>
+
+<p>Burada yapılan şu, sırayla gitmek ve sürekli geri dönüp, bulunduğumuz bölüme kadar olan yeri düzenlemek. Program çalışmaya başladığı zaman hangi sıradaysak o sıraya kadar ilerliyor ve ileriye gitmiyor. 
+Dizinin ikinci elemanından başlayarak kayıtlar sırayla kontrol edilir. Bir önceki kayıt o anki kayıttan büyükse bu iki elemanın yerleri değiştirilir ve dizide geriye doğru ilerlenir. Bu işleme seçilen dizi elemanından küçük kayıt kalmayıncaya kadar devam edilir.
+Ayrıca bununla ilgili çok güzel hazırlanmış bir dans videosu var, <a href="https://www.youtube.com/watch?v=ROalU379l3U">şuradan</a> izleyebilirsiniz.</p>
+
+<p>2 - Seçmeli Sıralama (Selection Sort):
+Dizideki ilk elemandan başlanılır, seçilen dizi elemanıyla bu elemandan sonra gelen dizi elemanları karşılaştırılır, en küçük dizi elemanı bulunup seçilen dizi elemanıyla yer değiştirilir. Bu işlem sonucunda dizinin en küçük elemanı belirlenerek dizinin başına yazılmış olur.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">numbers</span> <span class="o">=</span> <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">5</span><span class="o">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)):</span>
+    <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="ss">min</span><span class="p">:</span>
+            <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span>
+            <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">,</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span>
+    <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">min</span>
+
+<span class="nb">print</span> <span class="n">numbers</span></code></pre></div>
+
+<p>Bununla ilgili videoya <a href="https://www.youtube.com/watch?v=Ns4TPTC8whw">şuradan</a> ulaşabilirsiniz.</p>
+
+<p>3 - Kabarcık Sıralaması (Bubble Sort)
+Kabarcık sıralaması olarak adlandırılmasının sebebi dizi içindeki büyük elemanların algoritmanın her adımında dizi sonuna doğru lineer olarak ilerlemesidir. Dizinin başından başlanarak dizi elemanları 
+sırayla seçilir, seçilen dizi elemanı kendinden sonra gelen elemandan büyükse yerleri değiştirilir. Bu işlem sonunda dizinin en büyük elemanı dizi sonuna yerleştirildiğinden bir sonraki işlemde arama sınırı 
+bir eleman geri çekilir.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">:</span>
+            <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">,</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span>
+        <span class="n">j</span><span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span> <span class="n">numbers</span></code></pre></div>
+
+<p>Bubble Sort videosunu <a href="https://www.youtube.com/watch?v=lyZQPjUT5B4">şuradan</a> izleyebilirsniz.</p>
+
+<p>4 - Hızlı Sıralama (Quick Sort)
+Bu yaklaşım &quot;parçala ve çözümle&quot; ilkesine göre çalışmaktadır. Öncelikle sıralanacak diziden parçalayıcı görevini üstlenen bir pivot seçilir. Bu işlemin ardından seçilen elemanın solundaki
+elemanlarla sağındaki elemanların yeri değiştirilerek parçalayıcı elemanın solundakilerden büyük, sağındakilerden ise küçük olması sağlanır.
+Çözümü recursive(özyinelemeli) şekilde yapacağız.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">quicksort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="ss">arr</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">[]</span>
+
+    <span class="n">pivots</span> <span class="o">=</span> <span class="o">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">arr</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]]</span>
+    <span class="n">lesser</span> <span class="o">=</span> <span class="n">quicksort</span><span class="p">(</span><span class="o">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">arr</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]]</span><span class="p">)</span>
+    <span class="n">greater</span> <span class="o">=</span> <span class="n">quicksort</span><span class="p">(</span><span class="o">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">arr</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]]</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="o">[</span><span class="n">lesser</span><span class="o">]</span> <span class="o">+</span> <span class="n">pivots</span> <span class="o">+</span> <span class="o">[</span><span class="n">greater</span><span class="o">]</span></code></pre></div>
+    
+
+<p>Quick Sort videosu <a href="https://www.youtube.com/watch?v=ywWBy6J5gz8">burada</a></p>
+
+<p>Şimdi de özel sayıları inceleyelim ve bunları bulmak için gereken koda bakalım.</p>
+
+<h3>Özel Sayılar</h3>
+
+<p>1 - Arkadaş Sayılar
+Sayının kendisi hariç diğer bölenlerine <code>gerçek bölenler</code> denir. Örnek olarak 220 ve 284 verilmiş. 
+220 Bölenleri = 1 + 2 + 4 + 5 + 10 + 11 + 20 + 22 + 44 + 55 + 110 = 284 
+284 Bölenleri =  1 + 2 + 4 + 71 + 142 = 220</p>
+
+<p>Peki bize kafadan 2 sayı verildiği zaman biz bunların arkadaş olup olmadığını nerden bileceğiz? Tabi ki kod yazarak. Deneyelim.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">top1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">top2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">numb</span> <span class="o">=</span> <span class="n">int</span><span class="p">(</span><span class="n">raw_input</span><span class="p">(</span><span class="s2">&quot;1.sayi&quot;</span><span class="p">))</span>
+<span class="n">numb2</span> <span class="o">=</span> <span class="n">int</span><span class="p">(</span><span class="n">raw_input</span><span class="p">(</span><span class="s2">&quot;2.sayi&quot;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numb</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">numb</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">top1</span> <span class="o">=</span> <span class="n">top1</span> <span class="o">+</span> <span class="n">i</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numb2</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">numb2</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">top2</span> <span class="o">=</span> <span class="n">top2</span> <span class="o">+</span> <span class="n">i</span>
+
+<span class="k">if</span> <span class="n">top1</span> <span class="o">==</span> <span class="n">numb2</span> <span class="ow">and</span> <span class="n">top2</span> <span class="o">==</span> <span class="ss">numb</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s2">&quot;arkadas sayilar&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s2">&quot;arkadas degiller&quot;</span></code></pre></div>
+ 
+
+<p>Armstrong Sayılar
+Bir sayının basamak sayısı ile sayıların kuvvetleri alınıp toplandığı zaman sayının kendisi çıkıyorsa bu sayı armstrong sayı oluyor. Örneğin</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">153</span> <span class="o">=</span> <span class="mi">1</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="o">^</span><span class="mi">3</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">numb</span><span class="p">):</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">str</span><span class="p">(</span><span class="n">numb</span><span class="p">):</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">top</span> <span class="o">+</span> <span class="n">pow</span><span class="p">(</span><span class="n">int</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">len</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">numb</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">top</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">find</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="n">i</span></code></pre></div>
+ 
+
+<p>Özel sayıları anlatırken asal sayıları atlamak olmaz. Asal sayıları bulan ya da verilen bir sayının asal olup olmadığını bulan koda bakalım:
+Öncelikle asal sayıyı kendi yöntemimizle bulurken şunu biliyoruz, 1&#39;den ve kendisinden başka sayıya bölünemeyen sayılar asal sayıdır. Düşündüğümüz şeyi düz bir şekilde performans kaygısı duymadan koda dökersek 
+şöyle bir şey çıkıyor:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">list</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
+        <span class="n">asal</span> <span class="o">=</span> <span class="no">True</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">asal</span> <span class="o">=</span> <span class="no">False</span>
+        <span class="k">if</span> <span class="n">asal</span> <span class="o">==</span> <span class="ss">True</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="n">i</span>
+
+<span class="n">list</span><span class="p">()</span></code></pre></div>
+ 
+
+<p>Burda yapılan işlem şudur: 3&#39;ten başlayarak 1000&#39;e kadar olan her sayı kendisinden küçük olan sayılara bölünmeye çalışılır. Eğer sayı 1 kere tam bölünmüşse asal olmadığı anlaşılır. Burada göze çarpan 
+şey: Çift sayıların asal olmadığını biliyoruz. Ama 3&#39;ten 1000&#39;e kadar olan sayıları denerken arada çift sayılar da var ve onları boş yere kontrol ediyoruz. İkinci algoritmada çift sayıları kontrol etmeyi bırakıyoruz.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">list</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">asal</span> <span class="o">=</span> <span class="no">True</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">asal</span> <span class="o">=</span> <span class="no">False</span>
+        <span class="k">if</span> <span class="n">asal</span> <span class="o">==</span> <span class="ss">True</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="n">i</span>
+
+<span class="n">list</span><span class="p">()</span></code></pre></div>
+ 
+
+<p>Burda göze çarpan diğer nokta şu oluyor: Burada i sayısı diyelim ki 20 olsun ve for j in range(2, 20) derken aslında i&#39;yi bölmeye çalıştığımız son sayı 10 olmalıdır çünkü 10&#39;dan sonra 11, 12, 13 .. bu sayılara zaten bölünemeyeceğini biliyoruz. Bir de tek sayıları aldığımız için tek sayıların çift sayılara bölünemeyeceğini biliyoruz. Artık bölen kısmını da tek sayılardan oluşturmaya başlıyoruz. Kodumuzun o bölümünü düzeltelim : </p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">list</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">asal</span> <span class="o">=</span> <span class="no">True</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">asal</span> <span class="o">=</span> <span class="no">False</span>
+        <span class="k">if</span> <span class="n">asal</span> <span class="o">==</span> <span class="ss">True</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="n">i</span>
+
+<span class="n">list</span><span class="p">()</span></code></pre></div>
+ 
+
+<p>En son olarak da bir sayının kendi kareköküne kadar olan sayılarla bölünüp bölünmediğini kontrol etmenin yeterli olduğunu anlıyoruz. 3. adıma bakarsanız sayıyı numb%2 sayısına kadar bölmeye çalışmıştık. Örneğin 3. adımda 20 sayısını 11&#39;e kadar bölerken şimdi 20&#39;nin kareköküne yakın olan 5 sayısına kadar bölmemizin yeterli olduğunu anlıyoruz.
+Kodumuza ekleme yapalım:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">list</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">asal</span> <span class="o">=</span> <span class="no">True</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">int</span><span class="p">((</span><span class="n">i</span><span class="o">**</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">asal</span> <span class="o">=</span> <span class="no">False</span>
+        <span class="k">if</span> <span class="n">asal</span> <span class="o">==</span> <span class="ss">True</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="n">i</span>
+<span class="n">list</span><span class="p">()</span></code></pre></div>
+ 
+
+  </article>
+
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'httpadakarcigithubio'; // required: replace example with your forum shortname
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ada Karcı</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li></li>
+          <li><a href="mailto:karci.ada@gmail.com">karci.ada@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/adakarci">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">adakarci</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">I'm Ada.. I'm writing about Computer Software(learning) and aliens. The point is building a time machine. Alien is just a joke, I have definitely no idea about aliens.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
