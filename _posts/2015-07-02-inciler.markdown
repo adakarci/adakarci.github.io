@@ -145,7 +145,7 @@ Aşağıdaki üç örnekte python için yazılmış methodları kodumuzun içind
 
 {% highlight ruby %}
 freqs = {}
-for c in "abracadabra":
+for c in "hedehodobobo":
     try:
         freqs[c] += 1
     except:
@@ -153,18 +153,22 @@ for c in "abracadabra":
 {% endhighlight %}
 
 Some may say a better solution would be:
-
+{% highlight ruby %}
   freqs = {}
-  for c in "abracadabra":
+  for c in "hedehodobobo":
       freqs[c] = freqs.get(c, 0) + 1
+{% endhighlight %}
 
 Rather go for the collection type defaultdict
+{% highlight ruby %}
 
-  from collections import defaultdict
-  freqs = defaultdict(int)
-  for c in "abracadabra":
-      freqs[c] += 1
+from collections import defaultdict
+freqs = defaultdict(int)
+for c in "hedehodobobo":
+    freqs[c] += 1
+{% endhighlight %}
 
+Devam Edecek...
 
 [jekyll]:      http://jekyllrb.com
 [jekyll-gh]:   https://pages.github.com/
