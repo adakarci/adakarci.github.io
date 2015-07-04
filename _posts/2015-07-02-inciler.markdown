@@ -1,0 +1,171 @@
+---
+layout: post
+title:  "Bir takım Python İncileri"
+date:   2015-07-02 17:32:40
+image: /assets/girl.jpg
+categories: jekyll update
+---
+<h3>Serilization ( pickle)</h3>
+List, dict vs. gibi nesneleri bir dosyaya yazdırmak istediğimiz zaman başka bir forma dönüştürmemiz gerekir. Bu işleme `Serilization` adı verilir. Python bu işlem için pickle kütüphanesini sunmuştur.
+2 Methodu vardır:
+1 - Birincisi dump, nesneyi dosyaya yazdırmak için byte dizisine dönüştürür.
+2 - İkincisi load, dosyadan okuduğu byte dizisini tekrar nesneye dönüştürerek kullanılabilir hale getirir.
+Örnek yapalım:
+
+{% highlight ruby %}
+import pickle
+
+a = ['value1','value2','value3']
+a
+['value1','value2','value3']
+
+file_Name = "file1"
+# a nesnesini(listesini) yazdiracagimiz dosyayi aciyoruz, dosya adina file1 verdim.
+fileObject = open(file_Name,'wb') 
+
+Burada pickle.dump listeyi byte dizisine donusturerek file1 dosyasina yazdirdi.
+pickle.dump(a,fileObject)   
+
+dosyaya yazma isimiz bittigi icin kapatiyoruz.
+fileObject.close()
+# Simdi okumak icin dosyayi tekrar aciyoruz.
+fileObject = open(file_Name,'r')  
+load methodu ile byte dizisi tekrar liste formuna donusuyor.
+b = pickle.load(fileObject)  
+b
+['value1','value2','value3']
+a==b
+True
+{% endhighlight %}
+
+<h3>Glob</h3>
+Python'da glob herhangi bir dizindeki dosyaya ya da dosyalara ulaşmanızı sağlar.
+
+{% highlight ruby %}
+import glob
+for name in glob.glob('dir/*'):
+    print name
+{% endhighlight %}
+
+<h3>os.walk</h3>
+os.walk belirtilen dizinin yolunu, içindeki dizinleri, dosyaları verir.
+{% highlight ruby %}
+
+import os
+path = "/home/ada/Desktop/data"
+
+for (path, dirs, files) in os.walk(path):
+	print dirs
+	print path
+	print files
+{% endhighlight %}
+
+<h3>iteritems and items</h3>
+Şu iki kodu inceleyelim : 
+
+1 - 
+{% highlight ruby %}
+test_dictionary={1:"one",2:"two",3:"three"}
+
+
+for k,v in test_dictionary.items():
+
+     print k,v
+
+
+for k,v in test_dictionary.iteritems():
+
+     print k,v
+
+print test_dictionary.items()
+
+print test_dictionary.iteritems().next()
+{% endhighlight %}
+Burada iteritems kullanımının faydası memory kazancı sağlamaktır. Çünkü iteritems() bize bir generator döndürüp, sözlükteki öğelere tek tek ulaşmamızı sağlar. Tüm elemanlar için hafızada yer ayırmak yerine sıradaki öğe için yer ayırır, sonra o elemanı unutur. 
+items() bütün öğeleri bir listede toplayıp ( tabiki hafızada o kadar yer ayırarak) bize sunar.
+
+<h3>Python ile kod yazarken hatırlamamız gerekenler</h3>
+
+Bir programlama dilinin kültürünü öğrenmek sizi iyi bir programcı yapmaya daha çok yaklaştıracaktır. Python dili için `Zen of Python` önemlidir, bilmelisiniz. Terminal açarak `import this` komutunu 
+vererek aşağıdaki satırlara ulaşabilirsiniz.
+
+{% highlight ruby %}
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+{% endhighlight %}
+
+<h4>Basit şeyleri hatırlayalım:</h4>
+
+1 - Örneğin for döngüsü kurmak yerine lambda kullanmak gerekli.
+2 - iki değişkenin değerini yer değiştirmek için (swapping) : 
+{% highlight ruby %}
+ a, b = b, a
+
+{% endhighlight %}
+
+
+3 - 
+{% highlight ruby %}
+  def function(x, l=[]):          # Bunu yapma
+
+  def function(x, l=None):        # Daha iyi bir yol
+      if l is None:
+          l = []
+{% endhighlight %}
+4 - Bir nesnenin tipini doğrulatmak için
+{% highlight ruby %}
+type(s)==list
+{% endhighlight %}
+demek yerine 
+{% highlight ruby %}
+if isinstance(s, (list, tuple))
+{% endhighlight %}
+kullanmak daha iyi bir yoldur.
+
+Aşağıdaki üç örnekte python için yazılmış methodları kodumuzun içinde kullanmanın daha mantıklı olacağı açıklanmış:
+
+{% highlight ruby %}
+freqs = {}
+for c in "abracadabra":
+    try:
+        freqs[c] += 1
+    except:
+        freqs[c] = 1
+{% endhighlight %}
+
+Some may say a better solution would be:
+
+  freqs = {}
+  for c in "abracadabra":
+      freqs[c] = freqs.get(c, 0) + 1
+
+Rather go for the collection type defaultdict
+
+  from collections import defaultdict
+  freqs = defaultdict(int)
+  for c in "abracadabra":
+      freqs[c] += 1
+
+
+[jekyll]:      http://jekyllrb.com
+[jekyll-gh]:   https://pages.github.com/
+[jekyllblo]:   https://github.com/adakarci/myblog

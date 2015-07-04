@@ -1,0 +1,270 @@
+---
+layout: post
+title:  "JsPyConf Yazılım Etkinliğini tekrar izleyeyim dedim"
+date:   2015-07-02 17:32:40
+image: /assets/girl.jpg
+categories: jekyll update
+---
+
+2013 Mart ayında web ağırlıklı, JavaScript ve Python dillerinin hakim olduğu müthiş bir konferans yapmışlardı. Koltuğa yayılıp dizi keyfi yapayım derken aklıma geldi, tekrar izleyeyim, kayıt altına alayım diye düşündüm. Şimdi ordan aldığım bir kaç notu paylaşmak istiyorum sadece.
+
+<h3>Django ve Python ile ilgili yakaladıklarım:<p>
+Konuşmacılar: Fatih Erikli, Özgür Vatansever, Tayfun Şen</h3>
+
+`Hatırlatma: Buradaki notların bir başı ve sonu yok, kafama göre alıyorum. Ayrıca tamamiyle doğru aktarmamış da olabilirim, açıkçası kendi anlayacağım şekilde yazdım.
+Bu yüzden konferansı izlemenizi öneririm.`<p>
+1 - Django'da veritabanından bilgi çekmek için sorgu yapıyoruz ve bunun için Django'nun sağlamış olduğu queryset'lerden faydalanıyoruz. Querysetler tembeldir ancak bu iyi bir şey. Bir kaç durumda verilebilen çalıştır komutunu almadan asla çalışmıyorlar.
+
+Örnek:
+
+{% highlight ruby %}
+>>>qs = Foo.objects.all()
+>>>qs = qs.filter(published=True)
+>>>qs = qs.exclude(id=3)
+{% endhighlight %}
+
+Burada sorgu sayısına bakacak olursak 0 sorgu sayısı olduğunu görürüz. Çünkü herhangi bir çalıştır komutu vermedik.
+{% highlight ruby %}
+>>>from django.db import connection
+>>>len(connection.queries)
+0
+{% endhighlight %}
+
+Querysetler siz istediğiniz zaman çalışırlar. Örneğin<p>
+boolean(queryset)<p>
+repr(queryset) print edince<p>
+slice ederken üçüncü parametreyi verdiğiniz zaman<p>
+len(queryset)<p>
+iter(queryset)<p>
+
+gibi durumlarda çalışıyorlar.
+
+Querysetlerin yerel caching mekanizması vardır.
+{% highlight ruby %}
+
+>>>qs = Foo.objects.all()
+>>>list(qs)
+...
+>>>list(qs)
+...
+
+>>>fron django.db import connection
+>>>len(connection.queries)
+1
+{% endhighlight %}
+
+Görüldüğü üzere sorgudan dönen datayı iki kez çağırmış olmamıza rağmen sorgu sadece 1 kez gerçekleşiyor. Bu da güzel bir şey.
+ForeignKey'lerde de aynı durum vardır.
+{% highlight ruby %} 
+>>>post = Post.objects.get(id=1)
+>>>post.author
+<Author:hede>
+>>>post.author
+<Author:hede>
+
+>>from django.db import connection
+>>>len(connection.queries)
+2
+{% endhighlight %}
+Toplamda 2 sorgu yapılmıştır ve 2 kez `post.author` dememize rağmen sorgu sayısı 3'e çıkmamıştır, hala 2'dir.
+
+<h4>Bazı Problemler</h4>
+N+1 problemi
+
+{% highlight ruby %}
+>>>posts = Post.objects.all()
+>>>for post in posts:
+...    post.author
+{% endhighlight %}
+
+Burada 10 adet postumuzun olduğunu düşünelim toplam sorgu sayısı 11 oluyor.
+Bunun çözümü olarak Django'da join yani select_related kullanılıyor. Ancak bu her zaman çözüm olmayabilir.
+ManyToManyField'larda çözüm prefetch_related.
+
+Problem 2 - Gereksiz Fieldlar:
+
+{% highlight ruby %}
+>>>post_ids = [post.pk for post in Post.objects.all()]
+>>>post_ids
+[1, 2, 3, 4, 5, 6]
+{% endhighlight %}
+
+Burada sorgu yaparken Post tablosundaki bütün fieldlar gelecektir ve bu performans kaybı demektir. Örneğin post tablosunun content adlı fieldının her defasında gereksiz yere çekildiğini düşünün.
+Bunun çözümü values ve values_list kullanımıdır. Bu sayede sadece istediğimiz fielda ulaşıyoruz.
+
+{% highlight ruby %}
+Post.objects.values_list('id', flat=True)
+{% endhighlight %}
+
+Pratikler:
+Kayıt sayısını almak için len yerine count kullanılmalıdır.
+Foreignkeylerde bir fielda ulaşırken kötü örnek:
+
+{% highlight ruby %}
+posts = Post.objects.all()
+for post in posts:
+    print post.categories.count()
+{% endhighlight %}
+
+Burada sorgu sayısı 20 post için 21 olacaktır.
+Bunun doğrusu şu olmalıdır:
+
+{% highlight ruby %}
+posts = Post.objects.annotate(category_count=Count('categories'))
+
+for post in posts:
+    print post.category_count
+
+Sorgu Sayisi:1 
+{% endhighlight %}
+
+Post objesindeki kategorilerin tamamının sayısını isterseniz aggregation kullanabilirsiniz.
+
+{% highlight ruby %}
+aggregation = Post.objects.aggregate(category_count = Count('categories'))
+print aggregation.get('category_count')
+{% endhighlight %}
+
+
+Profiling:
+Yaptığınız sorguları, sayısını incelemek için Django Debug Toolbar kullanabilirsiniz.
+
+<h2>Optimizasyon yaparken nelere dikkat etmeliyiz?</h2>
+Optimizasyon:
+Bir programın daha efektif, hızlı çalışması ya da daha az kaynak kullanmasını sağlarsanız optimizasyon yapmış olursunuz.
+
+--Robert Sedgewick
+
+1 - Optimizasyonun anlamını bilmemiz gerekiyor.<p>
+2 - Optimizasyon yaparken nelerden feragat edebiliriz?<p>
+3 - Optimizasyon analizi ( Hız ve Kaynak bakımından bir analiz)<p>
+4 - Tasarım Optimizasyonu<p>
+5 - İhtiyaç zamanında methodu çalıştırmak<p>
+6 - Caching<p>
+7 - String / List Comprehension<p>
+8 - Method / Variable Lookups<p>
+9 - Data Structure (Doğru veri yapısı Seçme)<p>
+10 - Concurrency(GIL)<p>
+
+Optimizasyon gerçekten gerektiği zaman yapılmalıdır.
+
+Trade-offs
+
+- Yapılan optimizasyon kod okunurluğunu azaltabilir.
+- Programın dizaynı bozulabilir.
+- Programın diğer partlarının çalışmamasına neden olabilir.
+
+Optimizasyon analizi yaparken iki noktaya bakmak gerekiyor.
+
+
+Time Complexity(Big O) - Program yavaş mı çalışıyor?<p>
+Space Complexity - Program fazla kaynak mı harcıyor?
+
+Big O Notation / O(n)
+
+İki fonksiyonumuz var:
+
+Birinci durumda sum_list fonksiyonu birliste alarak liste içindeki sayıları topluyor ve sonucu döndürüyor. Listedeki sayı ne kadar fazla ise fonksiyon o kadar çalışmış olacağı için 
+liste büyüklüğü ile zaman büyüklüğü doğru orantılı oluyor. Bu fonksiyonun Big O'su n oluyor.
+
+{% highlight ruby %}
+def sum_list(lst):
+    result = 0
+    for num in lst:
+        result = result + num
+    return result
+{% endhighlight %}
+
+Aşağıdaki fonksiyonda ise parametre olarak verilen sayıya 5 rakamı ekliyor ve bu işlem sadece 1 sefer yapılıyor. Doğal olarak Big O'su 1 oluyor.
+{% highlight ruby %}
+def add5(n):
+    return n + 5
+{% endhighlight %}
+
+- Olabildiğince döngülerden kaçmamız gerekiyor.
+
+Cache Mekanizmasını kullanmalıyız:
+Örnek:
+{% highlight ruby %}
+
+def factorial(n):
+    if n <= 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+cache = {}
+def memoize(f):
+    def wrap(arg):
+        if not arg in cache:
+            cache[arg] = f(arg)
+        return cache[arg]
+    return wrap
+
+@memoize:
+def factorial_numb(n):
+    return factorial(n)
+
+{% endhighlight %}
+
+Burada memoize decarator kullanıldığı için tekrar aynı şeyi hesaplamaktan kaçınıyor. Açıkçası şu decorator kavramı benim için tam bir sandwich, üzerine eğilmem gerekiyor.
+
+Lazy Evaluation
+
+- Sadece ihtiyacım olduğu zaman hesaplama yapılsın. Kaynak kullanımı tarafından kazançlı bir durumdur. Örneğin `range` yerine `xrange` kullanmak daha avantajlıdır. Döngülerde 
+generatorleri kullanmak gereklidir.
+
+String / List Concatenation
+
+Birleştirme yaparken "+" kullanmaktan kaçının. String ifadeler için .join(), listeler için .extend() kullanın.
+List Comprehension kullanın.
+
+Veri yapısını oluştururken dikkat etmemiz gereken maddeler vardır:
+
+Elemanı çok mu siliyorum, çok mu ekliyorum, çok mu varlığını kontrol ediyorum?
+
+List:
+Dizi gibi davransa bile dizi değildir. Uzunluklarını değiştirebilirsin.
+Listenin en soluna bir şey eklemek pahalı bir iş oluyor.
+Deque kullanmak sola eleman eklerken daha hızlı sonuç almamızı sağlar.
+List yerine gerektiği durumlarda set kullanmak daha avantajlıdır.
+
+<h2>Api Nedir?</h2>
+Application Programming Interface'in kısaltılmış hali API'dır.
+Genel Anlamı: Bir programı kullanarak program yazmanızı sağlıyor. İki yazılımın veritabanındaki datanın istenilen bölümleri dahilinde sorunsuz bir şekilde haberleşmesini sağlıyor. Api'ların kullanımı git gide artıyor. Bunun büyük bir sebebi olarak JavaScriptin yükselişi denilebilir. 
+Mobile uygulamalar da api kullanarak haberleşiyor. Web uygulamaları da başka servisleri entegre edebilmek için api kullanıyor. Çeşitli programları birleştirerek bir şeyler ortaya çıkarmak için
+api kullanımı gereklidir.
+Bir api uygulaması yazmak için aşağıdaki iki protokolü kullanabilirsiniz.<p>
+SOAP = Simple Object Access Protocol (Basit Nesne Erişim Protokolü) - XML formatı ile çalışır.<p>
+REST = Representational State Transfer - Belirgin bir formatı yoktur. -  JSON, XML hatta Text formatında bile yapabilirsiniz.
+
+REST standardında olan özellikler:
+
+POST - create a new resource
+DELETE - delete a resource
+PUT - replace the whole resource
+PATCH - change some part of resource
+GET - view a resource
+
+Api yazarken bazı gereksinimler olabiliyor. Bunlar nelerdir mesela?
+
+- Versioning - Sürümlendirme (Servisiniz bir evrim geçirebiliyor ve eski sürümü kullanan uygulamalar çalışmaya devam edemiyor. Ancak yeni sürüm kullanmaya başladıkları zaman
+sorunsuz bir şekilde çalışmaya devam etmeliler.)
+- Pagination - Sayfalandırma (Tüm veriyi bir anda vermek istemeyebilirsiniz. Sayfa sayfa verilebilir.)
+- Authentication - Kimlik Doğrulama
+- Authorization - Yetkilendirme - Kimlik doğrulamadan sonra kişilere yetkiler verme
+- Filtering / Sorting - Veriyi isteğe uygun şekilde sunmak
+- Validation - Verinin doğru gelip gelmediğini denetleme
+- Caching - Kullanılan bir veriyi daha sonra tekrar hesaplama yapmadan kullanabilmek için
+- Json vs XML ? Veriyapısı olarak ne kullanacağınıza karar vermeniz gerekiyor. Json mı yoksa xml mi?
+- Throttling
+
+Django ve Python'da yapacağınız her işlem için bir kütüphane var. Api için kullanışlı iki tane kütüphane var. Bunlardan birisi django-rest-framework, diğeri tastypie
+
+* versioning : url sayfasına bir isim atarak yapabiliyorsunuz.
+* pagination: Sayfalandırma meta başlığı içinde geliyor.
+* authentication and authorization: Bunlar için çeşitli methodları override edebiliyorsunuz.
+* filtering and sorting: Django ORM'si ile benzerdir.
+* Veri doğrulamada djangoda formlar kullanılıyor, tastypieda da durum aynı.
+
+Caching api kullanımında önemli bir konu. Redis ve Mongodb kullanılabilir. Mongodb sıralama ve filtreleme durumlarında bir adım öne çıkmaktadır.
