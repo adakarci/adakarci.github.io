@@ -2,9 +2,11 @@
 layout: post
 title:  "JsPyConf Yazılım Etkinliğini tekrar izleyeyim dedim"
 date:   2015-07-02 17:32:40
-image: /assets/girl.jpg
+image: /assets/img10.png
 categories: jekyll update
 ---
+
+<img src="{{ page.image }}" /><p>
 
 2013 Mart ayında web ağırlıklı, JavaScript ve Python dillerinin hakim olduğu müthiş bir konferans yapmışlardı. Koltuğa yayılıp dizi keyfi yapayım derken aklıma geldi, tekrar izleyeyim, kayıt altına alayım diye düşündüm. Şimdi ordan aldığım bir kaç notu paylaşmak istiyorum sadece.
 
