@@ -5,12 +5,14 @@ date:   2015-07-05 17:32:40
 image: /assets/login.png
 image2: /assets/ana.png
 image3: /assets/kkayit.png
+image4: /assets/ema.png
+
 
 ---
 
 Çalıştığım okulda bu sene kütüphane programına ihtiyacımız olmuştu. İnternetten arama yaptığım zaman 2-3 tane kullanılabilir ücretsiz program olduğunu gördüm. Ücretli olarak satanlar da vardı. Ben de kendi programımızı yapalım diye düşündüm. Normalde web projelerimi Python ve framework olarak Django ile yapıyorum ancak masaüstü uygulamasında C# ve Visual Studio kullanmak istedim. C ailesi içinde en sevdiğim şüphesiz C#. Gördüğüm syntax yapısından haberdar olduğum diller arasında C++ hayatta kullanmam dediğim dil sanırım. 
 
-C# diline tam hakim olmadan veritabanı olarak da Microsoft Sql Server ile bir projeye bodozlama dalmak biraz sancılı oldu diyebilirim. Aslında sancılı değil de nasıl söylesem bir şeyi daha önce hiç yapmadıysanız, kullanmadıysanız ilk seferde tabi ki zorlanmalar olur doğaldır. Bir yere kadar zevkli gidiyordu, yazdığım kodların çalışması beni mutlu etti ancak ta ki programın setup’ını oluşturup diğer bilgisayarda kurulum yapana kadar. Kurulumdan sonra programı çalıştırınca ekranda Dan diye Veritabanına login olunamıyor hatası ile karşılaştım. Veritabanına bağlanırken gösterdiğim yolda sıkıntı varmış. Ben ise sorunun tamamen sql manegement studio üzerinden kullanıcılara verilen permissionlarla ya da Windows Authentication veya Sql Authentication olayını tam kavrayamadığımdan olduğunu düşünüp durdum. İnternette o kadar çok arama yaptım ki hayatımda ilk defa bir sorunun çözümünü bulamadım ve arkadaşımdan yardım istedim. Arkadaşım Bilgisayar Mühendisi ve profesyonel iş hayatında  .NET ile proje geliştirdiğini biliyordum. Bilgisayarıma uzaktan erişim sağladı ve conenction stringimdeki Data Source ifadesini değiştirdi ve veritabanına bağlanabildim. Sorun diğer bilgisayarda veritabanı yolunun yanlış olmasıyla ilgiliymiş. Kendisine tekrar teşekkür ediyorum. Python ve Django ile çalışırken örneğin orda static ve media dosyalarının, veritabanının yolunu göstermem yarım saatimi bile almamıştı. Çünkü her şey açık bir şekilde anlatılmıştı.  İşte söylediğim gibi tam bilmeden balıklama daldığım için biraz sıkıntı çektim.
+C# diline tam hakim olmadan veritabanı olarak da Microsoft Sql Server ile bir projeye bodozlama dalmak biraz sancılı oldu diyebilirim. Aslında sancılı değil de nasıl söylesem bir şeyi daha önce hiç yapmadıysanız, kullanmadıysanız ilk seferde tabi ki zorlanmalar olur doğaldır. Bir yere kadar zevkli gidiyordu, yazdığım kodların çalışması beni mutlu etti ancak ta ki programın setup’ını oluşturup diğer bilgisayarda kurulum yapana kadar. Kurulumdan sonra programı çalıştırınca ekranda Dan diye Veritabanına login olunamıyor hatası ile karşılaştım. Veritabanına bağlanırken gösterdiğim yolda sıkıntı varmış. Ben ise sorunun tamamen sql manegement studio üzerinden kullanıcılara verilen permissionlarla ya da Windows Authentication veya Sql Server Authentication olayını tam kavrayamadığımdan olduğunu düşünüp durdum. İnternette o kadar çok arama yaptım ki hayatımda ilk defa bir sorunun çözümünü bulamadım ve arkadaşımdan yardım istedim. Arkadaşım Bilgisayar Mühendisi ve profesyonel iş hayatında  .NET ile proje geliştirdiğini biliyordum. Bilgisayarıma uzaktan erişim sağladı ve connection stringimdeki Data Source ifadesini değiştirdi ve veritabanına bağlanabildim. Sorun diğer bilgisayarda veritabanı yolunun yanlış olmasıyla ilgiliymiş. Kendisine tekrar teşekkür ediyorum. Python ve Django ile çalışırken örneğin orda static ve media dosyalarının, veritabanının yolunu göstermem yarım saatimi bile almamıştı. Çünkü her şey açık bir şekilde anlatılmıştı.  İşte söylediğim gibi tam bilmeden balıklama daldığım için biraz sıkıntı çektim.
 
 Veritabanının yolu sorununu çözünce bu sefer veritabanının kendisi bir sorun oluşturdu çünkü ben Microsoft Sql Server kullanmıştım ve bu programı kullanacak olan her bilgisayarda sqlserver kurulu olması gerekiyordu ve bu da okul kütüphanelerindeki 512 mb ram, pentium 4 işlemcili bilgisayarları düşününce evet gülünç bir durumdu. Karar verdim Access kullanmaya. Bu sefer tabi ki sorgular değişti. Örneğin bir türlü OleDbCommand içinde değişken tanımlayamadım ve kendi bildiğim yöntemle sorunu çözmeye çalıştım. Neyse dediğim gibi C# dilinin üzerine gideceğim.  Ama tabi ki web projelerimde Python’dan vazgeçmem şimdilik. Ama şunu söyleyebilirim ki C#, .NET, Visual Studio'dan oluşan platformdan zevk aldım. Biraz daha teknik kısma inmek gerek tabi.
 
@@ -28,3 +30,24 @@ Daha sonra ekrana ana ekran geliyor ve işte burada logo, bugün kitap getirmesi
 Öğrenci kaydı yapmak için işlem yapılan ekran :
 
 <img src="{{ page.image3 }}" /><p>
+
+Öğrenciye kitap vermek için kullanılan ekran:
+
+<img src="{{ page.image4 }}" /><p>
+
+
+Programa eklenmesi gereken özellikleri listeledim tabi ki bu liste de zamanla güncellenecek:
+
+1 -  Bugün kitap getirmesi gereken öğrencileri ana sayfada göster.
+
+2 - Günü geçmiş olan kitapların gelmesi için uyarıda bulun.
+
+3 - En çok kitap okuyanları sıralayarak listele.
+
+4 - Öğrenciye “Kitap okumaya teşvik eden”, “Kitap gününü geçirdiğini bildiren”, “Ayın en çok okuyan 1.kişisisin”  temalı mesaj ya da mail gönder. 
+
+5 - Öğrencilerden kütüphanede bulunmasını istedikleri kitapları bildiren mail atmalarını sağla.
+
+6 - Kitap okuma ile ilgili etkinlikler düzenle.
+
+7 - Uzaktan güncelleme işlemini yapmasını sağla.
