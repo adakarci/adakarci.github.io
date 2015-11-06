@@ -2,12 +2,42 @@
 layout: post
 title:  "Fatih Projesi Etkinliği"
 date:   2015-11-06 17:32:40
-image: /assets/login.png
-image2: /assets/ana.png
-image3: /assets/kkayit.png
-image4: /assets/ema.png
+image: /assets/bese.png
+
 
 
 ---
 
-dan dan
+Zaman geçmiş yazmayalı, biraz yoğunluk vardı blog. Söz uçar, yazı kalır diyerek bu hafta katılmış olduğum Eğitimde Teknoloji Kullanımı 
+Eğitiminden bahsetmek istiyorum. Bu eğitime katılacak olan öğretmen arkadaşlar neyle karşılaşacaklarını görmeleri ya da katılmış olan öğretmenlerin şöyle bir göz atıp tekrar 
+etmesi amaçlı yazmak istedim. Bilişim Teknolojileri öğretmeni olduğumdan dolayı bu eğitimin amaçlarına doruk noktasında ulaşmasını gerçekten çok istiyorum. 
+Çünkü öğretmeni, öğretmenden daha iyi hiç kimse anlayamaz. Sınıfta yaşadığımız zorluklardan bahsetmek istemiyorum, çünkü bu konu zaten gün gibi aşikar.
+
+Öncelikle değerli eğitmenlerimiz İzmit İlçe Milli Eğitim'de formatörlük görevi yapan İlkay Solmaz ve Artuğ Solmaz'a çok teşekkür ediyoruz. Bizi sıkmadan, eğlenceli bir şekilde
+bu eğitimi tamamlamamızı sağladılar. Konular itinayla, bütün sorularımıza cevap verilerek işlendi. Zaman kısıtlaması ya da konuyu geçiştirme gibi olumsuzluklarla hiç karşılaşmadık.
+Çocuk gibi oyun bile oynadık, keyifliydi. KAhoot ile. Hangi konuları işledik, bizden beklenen neydi, sınıfta kullanabileceğimiz programlar, uygulamar neler sırayla hepsinden bahsedelim.
+
+İlk olarak Bilişim Teknoloji öğretmenlerinin bu eğitimi neden aldığından bahsettiler. Bizler okulda diğer öğretmen arkadaşların bu projeyi verimli uygulayabilmelerinde destek olacağımız için bakanlığın bizlerden beklentileri anlatıldı. Öğretmenlerin etkileşimli tahta kullanımında, antropi ve diğer materyal işleme yazılımları kullanımında gerektiği zaman yardımcı olmamız gerektiği vurgulandı. 
+
+Eğitimde Materyal Kullanımı:
+Sınıfta kullanılan eğitim materyallerinden bahsedildi. Örneğin bazı okullarda teknik ve donanımsal sıkıntılardan dolayı yaşanan sıkıntıların bu proje ile giderileceği açıklandı.
+Eğitimde kullanabileceğimiz bir kaç materyal olarak:
+
+Video ve ses
+Resim, grafik ve tablo
+Animasyon
+Simülasyon
+Eğitsel Oyun
+Metin ve Çalışma yaprağı
+Öğretimsel Bloglar
+
+
+Eğitim Modeli:
+
+Öncelikle 5e modelini örnek alarak konularımızı işledik. Dersimizde kullanmak için materyal araştırırken ve o materyal üzerinde düzenleme yaparken bu modeli göz önünde bulunduracaktık.
+
+<img src="{{ page.image }}" /><p>
+Bu aşamaların her birinde hangi tür materyaller kullanılabilir, hangilerinin kullanılması uygun olmaz şeklinde konuştuk. Bir çok metaryal
+örneği gösterildi akıllı tahtada. 
+
+
