@@ -3,11 +3,12 @@ layout: post
 title:  "Fatih Projesi Etkinliği"
 date:   2015-11-06 17:32:40
 image: /assets/bese.png
+image1: /assets/tek.jpg
 
 
 
 ---
-
+<img src="{{ page.image1 }}" /><p>
 Zaman geçmiş yazmayalı, biraz yoğunluk vardı blog. Söz uçar, yazı kalır diyerek bu hafta katılmış olduğum Eğitimde Teknoloji Kullanımı 
 Eğitiminden bahsetmek istiyorum. Bu eğitime katılacak olan öğretmen arkadaşlar neyle karşılaşacaklarını görmeleri ya da katılmış olan öğretmenlerin şöyle bir göz atıp tekrar 
 etmesi amaçlı yazmak istedim. Bilişim Teknolojileri öğretmeni olduğumdan dolayı bu eğitimin amaçlarına doruk noktasında ulaşmasını gerçekten çok istiyorum. 
