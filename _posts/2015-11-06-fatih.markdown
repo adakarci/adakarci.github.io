@@ -15,7 +15,7 @@ etmesi amaçlı yazmak istedim. Bilişim Teknolojileri öğretmeni olduğumdan d
 
 Öncelikle değerli eğitmenlerimiz İzmit İlçe Milli Eğitim'de formatörlük görevi yapan İlkay Solmaz ve Artuğ Solmaz'a çok teşekkür ediyoruz. Bizi sıkmadan, eğlenceli bir şekilde
 bu eğitimi tamamlamamızı sağladılar. Konular itinayla, bütün sorularımıza cevap verilerek işlendi. Zaman kısıtlaması ya da konuyu geçiştirme gibi olumsuzluklarla hiç karşılaşmadık.
-Çocuk gibi oyun bile oynadık, keyifliydi. KAhoot ile. Hangi konuları işledik, bizden beklenen neydi, sınıfta kullanabileceğimiz programlar, uygulamar neler sırayla hepsinden bahsedelim.
+Çocuk gibi [oyun][jekyll] bile oynadık, keyifliydi.  Hangi konuları işledik, bizden beklenen neydi, sınıfta kullanabileceğimiz programlar, uygulamar neler sırayla hepsinden bahsedelim.
 
 İlk olarak Bilişim Teknoloji öğretmenlerinin bu eğitimi neden aldığından bahsettiler. Bizler okulda diğer öğretmen arkadaşların bu projeyi verimli uygulayabilmelerinde destek olacağımız için bakanlığın bizlerden beklentileri anlatıldı. Öğretmenlerin etkileşimli tahta kullanımında, antropi ve diğer materyal işleme yazılımları kullanımında gerektiği zaman yardımcı olmamız gerektiği vurgulandı. 
 
@@ -41,3 +41,4 @@ Bu aşamaların her birinde hangi tür materyaller kullanılabilir, hangilerinin
 örneği gösterildi akıllı tahtada. 
 
 
+[jekyll]:      https://kahoot.it/#/
