@@ -10,7 +10,7 @@ image1: /assets/tek.jpg
 ---
 <img src="{{ page.image1 }}" /><p>
 Zaman geçmiş yazmayalı, biraz yoğunluk vardı blog. Söz uçar, yazı kalır diyerek bu hafta katılmış olduğum Eğitimde Teknoloji Kullanımı 
-Eğitiminden bahsetmek istiyorum. Bu eğitime katılacak olan öğretmen arkadaşlar neyle karşılaşacaklarını görmeleri ya da katılmış olan öğretmenlerin şöyle bir göz atıp tekrar 
+kursundan bahsetmek istiyorum. Bu eğitime katılacak olan öğretmen arkadaşlar neyle karşılaşacaklarını görmeleri ya da katılmış olan öğretmenlerin şöyle bir göz atıp tekrar 
 etmesi amaçlı yazmak istedim. Bilişim Teknolojileri öğretmeni olduğumdan dolayı bu eğitimin amaçlarına doruk noktasında ulaşmasını gerçekten çok istiyorum. 
 Çünkü öğretmeni, öğretmenden daha iyi hiç kimse anlayamaz. Sınıfta yaşadığımız zorluklardan bahsetmek istemiyorum, çünkü bu konu zaten gün gibi aşikar.
 
@@ -25,11 +25,17 @@ Sınıfta kullanılan eğitim materyallerinden bahsedildi. Örneğin bazı okull
 Eğitimde kullanabileceğimiz bir kaç materyal olarak:
 
 Video ve ses
+
 Resim, grafik ve tablo
+
 Animasyon
+
 Simülasyon
+
 Eğitsel Oyun
+
 Metin ve Çalışma yaprağı
+
 Öğretimsel Bloglar
 
 
